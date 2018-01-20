@@ -9,7 +9,7 @@ $ serverless deploy
 # Redeploy Function
 
 ```
-$ serverless deploy function -f echo
+$ serverless deploy function -f btn-press
 ```
 
 # Invoke

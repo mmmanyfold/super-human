@@ -8,11 +8,29 @@
             [io.nervous/lein-cljs-lambda "0.6.6"]]
   :npm {:dependencies [[serverless-cljs-plugin "0.1.2"]
                        [request                 "2.81.0"]
-                       [request-promise         "4.2.0"]]}
+                       [request-promise         "4.2.0"]
+                       [source-map-support      "0.4.0"]]}
   :cljs-lambda {:compiler
                 {:inputs  ["src"]
                  :options {:output-to     "target/super-human/super_human.js"
                            :output-dir    "target/super-human"
                            :target        :nodejs
                            :language-in   :ecmascript5
-                           :optimizations :none}}})
+                           :optimizations :none}}}
+  :cljsbuild
+  {:builds [{:id "super-human"
+             :source-paths ["src"]
+             :compiler {:output-to     "target/super-human/super_human.js"
+                        :output-dir    "target/super-human"
+                        :source-map    true
+                        :target        :nodejs
+                        :language-in   :ecmascript5
+                        :optimizations :none}}
+            {:id "super-human-test"
+             :source-paths ["src" "test"]
+             :compiler {:output-to     "target/super-human-test/super_human_test.js"
+                        :output-dir    "target/super-human-test"
+                        :target        :nodejs
+                        :language-in   :ecmascript5
+                        :optimizations :none
+                        :main super-human.test-runner}}]})

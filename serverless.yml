@@ -3,13 +3,14 @@ service: super-human
 provider:
   name: aws
   runtime: nodejs4.3
+  region: us-west-2
 
 functions:
-  echo:
-    cljs: super-human.core/echo
+  btn-press:
+    cljs: super-human.core/btn-press
     events:
       - http:
-          path: echo
+          path: btn-press
           method: post
 
 plugins:
