@@ -1,0 +1,16 @@
+service: super-human
+
+provider:
+  name: aws
+  runtime: nodejs4.3
+
+functions:
+  echo:
+    cljs: super-human.core/echo
+    events:
+      - http:
+          path: echo
+          method: post
+
+plugins:
+  - serverless-cljs-plugin
